@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    회원가입 페이지
+    <form method="post" action="/user/join">
+        <ul>
+            <li>
+                <input type="text" name="userid" placeholder="아이디 입력">
+            </li>
+            <li>
+                <input type="password" name="userpw" placeholder="비번 입력">
+            </li>
+            <li>
+                <input type="mobile" name="usermobile" placeholder="전화번호 입력" maxlength="11">
+            </li>
+        </ul>
+        <input type="submit" value="작성완료">
+    </form>
+</body>
+</html>
