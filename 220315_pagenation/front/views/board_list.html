@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style.css" rel="stylesheet" type="text/css">
+    <script src="/board_list.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <table cellspacing="0" cellpadding="0" id="board">
+        <thead>
+            <tr>
+                <td>게시글번호</td>
+                <td class="subject">제목</td>
+                <td>작성자</td>
+                <td>날짜</td>
+                <td>조회수</td>
+            </tr>
+        </thead>
+        <tbody></tbody> 
+    </table>
+    <div class="paging_wrap">
+        <a onclick="movePrev()">&lt;</a>
+        <div id="paging"></div>
+        <a onclick="moveNext()">&gt;</a>
+    </div>
+
+    <!-- 게시물 템플릿 -->
+    <template id="boardTemp">
+        <tr>
+            <td>{idx}</td>
+            <td><a href="/board/view?idx={idx}">{subject}</a></td>
+            <td>{nickname}</td>
+            <td>{date}</td>
+            <td>{hit}</td>
+        </tr>
+    </template>
+
+    <!-- 페이징 템플릿 -->
+    <template id="pagingTemp">
+        <a onclick="movePage({page})">{page}</a>
+    </template>
+
+</body>
+
+</html>

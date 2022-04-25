@@ -1,0 +1,29 @@
+#board {
+  width: 100%;
+}
+#board td {
+  padding: 7px 14px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+#board > tbody th {
+  background-color: #eee;
+  border-bottom: 2px solid #333;
+}
+#board thead .subject {
+  width: 45%;
+}
+
+a {
+  cursor: pointer;
+}
+
+#paging {
+  padding-top: 15px;
+  text-align: center;
+}
+
+.paging_wrap {
+  display: flex;
+  justify-content: center;
+}
