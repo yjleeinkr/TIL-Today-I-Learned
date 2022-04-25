@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    회원가입페이지
+    <form method="post" id="join_form" action='/api/user/join'>
+        <ul>
+            <li>
+                <span>아이디</span>
+                <span><input type="text" name="userid" id="userid"></span>
+                <input type="submit" id="idcheckBtn" value="중복체크"></input>
+                <div id="idcheckMsg"></div>
+            </li>
+            <li>
+                <span>비번</span>
+                <span><input type="password" name="userpw" id="userpw"></span>
+            </li>
+            <li>
+                <span>이름</span>
+                <span><input type="text" name="name" id="name"></span>
+            </li>
+            <li>
+                <span>닉네임</span>
+                <span><input type="text" name="nickname" id="nickname"></span>
+            </li>
+            <li>
+                <span>생일</span>
+                <span><input type="text" name="birth" id="birth"></span>
+            </li>
+            <li>
+                <span>성별</span>
+                <span>
+                    <input type="radio" name="gender" id="male" value="M" checked="checked">
+                    <label for="male">남자</label>
+                    <input type="radio" name="gender" id="female" value="F">
+                    <label for="female">여자</label>
+                </span>
+            </li>
+            <li>
+                <span>전번</span>
+                <span><input type="text" name="phone" id="phone" maxlength="11"></span>
+            </li>
+            <li>
+                <span>핸폰</span>
+                <span><input type="text" name="mobile" id="mobile" maxlength="11"></span>
+            </li>
+        </ul>
+        <input type="submit" id="submitBtn" value="회원가입">
+    </form>
+    <script type="text/javascript">
+        const frm = document.querySelector('#join_form')
+        const userid = document.querySelector('#userid')
+        const userpw= document.querySelector('#userpw')
+        const name= document.querySelector('#name')
+        const nickname= document.querySelector('#nickname')
+        const birth= document.querySelector('#birth')
+        const gender= document.querySelector('input[name="gender"]:checked')
+        const phone= document.querySelector('#phone')
+        const mobile= document.querySelector('#mobile')
+
+        const idcheckBtn = document.querySelector('#idcheckBtn')
+        const idcheckMsg = document.querySelector('#idcheckMsg')
+        const submitBtn = document.querySelector('#submitBtn')
+        submitBtn.disabled = true 
+
+        // 아이디 중복 체크
+        idcheckBtn.addEventListener('click',(e)=>{
+            e.preventDefault()
+            const inputId = {userid:userid.value}
+            axios.post('http://localhost:4001/api/user/join/idcheck',inputId, {'Content-type':'application/json'})
+            .then((response)=>{
+                console.log(response)
+                try{
+                    if (response.data.isSameId === 1 || userid.value === '') throw new Error('아이디 중복됨')
+                    idcheckMsg.innerHTML = '아이디 ㅇㅋ'
+                    idcheckMsg.style.color = 'green'
+                }catch(err){
+                    idcheckMsg.innerHTML = '아이디 ㄴㄴ'
+                    idcheckMsg.style.color = 'red'
+                }
+            })
+        })
+
+        userpw.addEventListener('keypress',()=>{
+            if(userpw.value.length > 5 ) submitBtn.disabled = false;
+        })
+
+
+        frm.addEventListener('submit', async (e)=>{
+            e.preventDefault()
+            submitBtn.value='로딩중'
+            submitBtn.disabled = true
+
+            const data = {
+                userid: userid.value,
+                userpw: userpw.value,
+                name: name.value,
+                nickname: nickname.value,
+                birth: birth.value,
+                gender: gender.value,
+                phone: phone.value,
+                mobile: mobile.value,
+            }
+       
+            const option = {
+                'Content-type':'application/json',
+                withCredentials:true,
+            }
+            // return?  promise 객체
+            // async await or then
+            const response = await axios.post('http://localhost:4001/api/user/join', data, option)
+            console.log(response.data)
+            if(response.data.errno == 0){
+                // 성공
+                location.href='/'
+            }else{
+                // 실패
+                alert('에러발생함')
+                submitBtn.value='회원가입'
+                submitBtn.disabled = false
+            }
+        })
+
+
+
+
+    </script>
+
+</body>
+</html>
