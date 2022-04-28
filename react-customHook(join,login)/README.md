@@ -25,7 +25,7 @@
       ```
       
     **point : 배열에 담긴 key값을 이용하여 객체화 하는 작업**  
-    [reduce 메서드 사용 예제](https://github.com/yjleeinkr/What-I-learned/blob/main/react-customHook(join%2Clogin)/reduce.js)  
+    [reduce 메서드 사용 예제](https://github.com/yjleeinkr/What-I-learned/blob/main/react-hooks-join2/reduce.js)  
 
 2. submitHandler 실행   
 
