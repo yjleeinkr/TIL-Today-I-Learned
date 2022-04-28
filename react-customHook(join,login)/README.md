@@ -25,7 +25,7 @@
       ```
       
     **point : 배열에 담긴 key값을 이용하여 객체화 하는 작업**  
-    [reduce 메서드 사용 예제]()  
+    [reduce 메서드 사용 예제](https://github.com/yjleeinkr/What-I-learned/blob/main/react-customHook(join%2Clogin)/reduce.js)  
 
 2. submitHandler 실행   
 
@@ -33,7 +33,7 @@
 
    1. input의 초기값을 담은 객체 
    2. 폼체크 함수
-   3. 가입 버튼 눌렀을 시 가입확인알람 
+   3. 제출 버튼 눌렀을 시 확인알람 
 
 3. array 또는 object를 리턴한다.  
     - return [value]; 또는 retrun {value}; 
